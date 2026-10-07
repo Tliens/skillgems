@@ -205,8 +205,51 @@ footer .codename{margin-top:8px;font-size:12.5px;color:var(--faint)}
 footer .codename b{color:var(--acc2);font-weight:600}
 footer .links{margin-top:10px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
+/* hero buttons + directory hint */
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.hbtn{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;border-radius:12px;padding:11px 20px;border:1px solid var(--bd);background:var(--card);color:var(--ink);cursor:pointer}
+.hbtn:hover{border-color:var(--acc);color:var(--acc);text-decoration:none}
+.hbtn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.hbtn.pri:hover{color:#fff;filter:brightness(1.07)}
+html[data-theme="dark"] .hbtn.pri{color:#0b1322}
+.dirhint{font-size:13px;color:var(--mut);margin:-8px 0 16px;text-align:center}
+.dirhint a{font-weight:600;cursor:pointer}
+
+/* intro modal */
+.imodal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(8,12,22,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.imodal[hidden]{display:none!important}
+.imodal .ibox{background:var(--card);border:1px solid var(--bd);border-radius:20px;max-width:840px;width:100%;max-height:min(88vh,880px);overflow:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.45);padding:28px 28px 24px}
+.iclose{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;border:1px solid var(--bd);background:var(--card2);color:var(--ink);font-size:17px;cursor:pointer;line-height:1}
+.iclose:hover{border-color:var(--acc);color:var(--acc)}
+.imodal h2{font-size:21px;letter-spacing:-.4px;padding-right:40px}
+.imodal .isub{color:var(--mut);font-size:14px;margin:6px 0 4px}
+.imodal h3{font-size:15px;margin:18px 0 9px;color:var(--acc)}
+.igrid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.igrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.icard{background:var(--card2);border:1px solid var(--bd);border-radius:12px;padding:11px 13px}
+.icard b{display:block;font-size:13px;margin-bottom:2px}
+.icard p{font-size:12px;color:var(--mut);line-height:1.5}
+.istep{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border:1px solid var(--bd);border-radius:12px;padding:11px 13px}
+.istep .n{flex-shrink:0;width:24px;height:24px;border-radius:8px;background:var(--acc);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+html[data-theme="dark"] .istep .n{color:#0b1322}
+.istep div b{display:block;font-size:13px;margin-bottom:2px}
+.istep div p{font-size:12px;color:var(--mut);line-height:1.5}
+.istep code,.ipath code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--acc);word-break:break-all}
+.ipath{background:var(--card2);border:1px dashed var(--bd);border-radius:10px;padding:10px 12px}
+.ipath b{font-size:12.5px;display:block}
+.ipath p{font-size:11.5px;color:var(--mut);margin:2px 0 4px}
+.inotes{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.inote{border-radius:10px;padding:11px 13px;font-size:12.2px;line-height:1.55;border:1px solid var(--bd);background:var(--card)}
+.inote b{display:block;margin-bottom:3px;font-size:12.5px}
+.inote.tip{border-color:color-mix(in srgb,var(--acc) 35%,var(--bd))}
+.inote.safe{border-color:color-mix(in srgb,var(--acc2) 45%,var(--bd))}
+.icodesc{font-size:12.5px;color:var(--mut);margin:2px 0 14px}
+.iend{text-align:center;margin-top:18px}
+body.mopen{overflow:hidden}
+@media(max-width:700px){.igrid2,.igrid3,.inotes{grid-template-columns:1fr}}
+
 @media print{
-  .top,.toolbar,.chips,.c-actions,footer .links{display:none!important}
+  .top,.toolbar,.chips,.c-actions,footer .links,.imodal,.hero-btns{display:none!important}
   .card,.acard,.step{box-shadow:none;break-inside:avoid}
 }
 </style>
@@ -220,8 +263,7 @@ footer .links{margin-top:10px;display:flex;gap:16px;justify-content:center;flex-
       <b>Skill<i>Gems</i></b>
     </a>
     <nav class="main" aria-label="Sections">
-      <a href="#about" data-i18n="navAbout">What are Skills</a>
-      <a href="#guide" data-i18n="navGuide">How to use</a>
+      <a href="#intro" id="navIntro" data-i18n="navGuide">Guide</a>
       <a href="#skills" data-i18n="navSkills">Directory</a>
       <a href="#faq" data-i18n="navFaq">FAQ</a>
       <a href="#more" data-i18n="navMore">Reading</a>
@@ -245,6 +287,10 @@ footer .links{margin-top:10px;display:flex;gap:16px;justify-content:center;flex-
       <span class="badge" data-i18n="badgeBilingual">🌐 English · 中文</span>
       <span class="badge" data-i18n="badgeForAI">🤖 Machine-readable for AI (llms.txt)</span>
     </div>
+    <div class="hero-btns">
+      <button class="hbtn pri" id="btnIntro" type="button" data-i18n="heroGuide">📖 New to skills? 60-second guide</button>
+      <a class="hbtn" href="#skills" data-i18n="heroBrowse">Browse the directory ↓</a>
+    </div>
     <!--STATS:START--><div class="stats">
       <div class="stat"><b id="stSkills">42</b><span data-i18n="statSkills">Skills &amp; collections</span></div>
       <div class="stat"><b id="stCats">9</b><span data-i18n="statCats">Categories</span></div>
@@ -256,45 +302,12 @@ footer .links{margin-top:10px;display:flex;gap:16px;justify-content:center;flex-
 
 <main class="wrap">
 
-<section id="about">
-  <div class="shead">
-    <h2 data-i18n="aboutTitle">What are AI agent skills?</h2>
-    <p data-i18n="aboutSub">Introduced by Anthropic in October 2025, skills are the fastest-growing way to teach AI agents real expertise — a simple open format that spread across the whole toolchain.</p>
-  </div>
-  <div class="grid4">
-    <div class="acard"><div class="ic">📦</div><h3 data-i18n="a1t">A folder with a SKILL.md</h3><p data-i18n="a1d">Each skill is a folder: a SKILL.md with a name, a one-line description and step-by-step instructions, plus optional scripts and reference files.</p></div>
-    <div class="acard"><div class="ic">⚡</div><h3 data-i18n="a2t">Loaded only when needed</h3><p data-i18n="a2d">The agent always sees the short description; the full instructions are loaded only when your task matches. Expertise on demand, without bloating context.</p></div>
-    <div class="acard"><div class="ic">🖥️</div><h3 data-i18n="a3t">Runs where you work</h3><p data-i18n="a3d">Skills work in Claude Code, the Claude apps and the API — and the open format is adopted by Codex CLI, Gemini CLI, Cursor and more.</p></div>
-    <div class="acard"><div class="ic">🧠</div><h3 data-i18n="a4t">Procedures, not prompts</h3><p data-i18n="a4d">Skills encode how experts work: multi-step workflows, house rules, quality bars. Write once, and every future session starts from experience.</p></div>
-  </div>
-</section>
-
-<section id="guide">
-  <div class="shead">
-    <h2 data-i18n="guideTitle">How to install &amp; use a skill</h2>
-    <p data-i18n="guideSub">Three steps from this page to a smarter agent. Works the same for almost every card in the directory.</p>
-  </div>
-  <div class="steps">
-    <div class="step"><div class="n">1</div><h3 data-i18n="s1t">Pick a skill &amp; open GitHub</h3><p data-i18n="s1d">Browse the directory, open the card that matches your task and hit the GitHub button to see the source, docs and license.</p></div>
-    <div class="step"><div class="n">2</div><h3 data-i18n="s2t">Drop it into your skills folder</h3><p data-i18n="s2d">Copy the skill folder into <code>~/.claude/skills/</code> for personal use, or <code>.claude/skills/</code> inside a project to share it via git. Some repos install as plugins — follow their README.</p></div>
-    <div class="step"><div class="n">3</div><h3 data-i18n="s3t">Just ask — it triggers itself</h3><p data-i18n="s3d">Skills activate automatically when your request matches their description, or name them explicitly: “use the pdf skill to build a fillable form”.</p></div>
-  </div>
-  <div class="paths">
-    <div class="path"><h4 data-i18n="p1t">💻 Claude Code — personal</h4><p data-i18n="p1d">Available in every project on your machine.</p><code>~/.claude/skills/&lt;name&gt;/SKILL.md</code></div>
-    <div class="path"><h4 data-i18n="p2t">📁 Claude Code — project</h4><p data-i18n="p2d">Committed to the repo, shared with the whole team.</p><code>.claude/skills/&lt;name&gt;/SKILL.md</code></div>
-    <div class="path"><h4 data-i18n="p3t">🌐 Claude apps &amp; marketplaces</h4><p data-i18n="p3d">Upload zipped skills under Settings → Capabilities, or install skill plugins via a marketplace (<code>/plugin</code>).</p></div>
-  </div>
-  <div class="notes">
-    <div class="note tip"><b data-i18n="tipT">💡 Want to write your own?</b><span data-i18n="tipD">Don’t start from a blank page: the official skill-creator skill interviews you about the task and generates a well-structured SKILL.md for you. Find it in the anthropics/skills card below.</span></div>
-    <div class="note safe"><b data-i18n="safeT">🛡️ Vet before you install</b><span data-i18n="safeD">A skill is instructions plus executable code. Prefer official repos, skim what you install, and scan third-party collections — e.g. with NVIDIA SkillSpector. Every link here was opened and verified by hand.</span></div>
-  </div>
-</section>
-
 <section id="skills">
   <div class="shead">
     <h2 data-i18n="dirTitle">The directory</h2>
     <p data-i18n="dirSub">42 entries across 9 categories — official releases, community collections and single-purpose gems. Search matches names, descriptions and tags in both languages.</p>
   </div>
+  <p class="dirhint"><span data-i18n="dirHintPre">🆕 First time here?</span> <a id="dirIntroLink" data-i18n="dirHintLink">Open the 60-second guide →</a></p>
   <div class="toolbar">
     <div class="search"><input id="q" type="search" data-i18n-ph="searchPh" placeholder="Search skills, e.g. pdf, design, seo, 科研…" aria-label="Search skills"></div>
     <select class="sortsel" id="sort" aria-label="Sort">
@@ -656,12 +669,49 @@ footer .links{margin-top:10px;display:flex;gap:16px;justify-content:center;flex-
   </div>
 </footer>
 
+<div class="imodal" id="introModal" hidden role="dialog" aria-modal="true" aria-labelledby="introTitle">
+  <div class="ibox">
+    <button class="iclose" id="introClose" type="button" aria-label="Close">×</button>
+    <h2 id="introTitle" data-i18n="introTitle">AI agent skills — the 60-second guide</h2>
+    <p class="isub" data-i18n="introSub">Everything you need before picking your first skill.</p>
+    <h3 data-i18n="introWhat">📦 What is a skill?</h3>
+    <div class="igrid2">
+      <div class="icard"><b data-i18n="a1t">A folder with a SKILL.md</b><p data-i18n="a1d">Each skill is a folder: a SKILL.md with a name, a one-line description and step-by-step instructions, plus optional scripts and reference files.</p></div>
+      <div class="icard"><b data-i18n="a2t">Loaded only when needed</b><p data-i18n="a2d">The agent always sees the short description; the full instructions are loaded only when your task matches. Expertise on demand, without bloating context.</p></div>
+      <div class="icard"><b data-i18n="a3t">Runs where you work</b><p data-i18n="a3d">Skills work in Claude Code, the Claude apps and the API — and the open format is adopted by Codex CLI, Gemini CLI, Cursor and more.</p></div>
+      <div class="icard"><b data-i18n="a4t">Procedures, not prompts</b><p data-i18n="a4d">Skills encode how experts work: multi-step workflows, house rules, quality bars. Write once, and every future session starts from experience.</p></div>
+    </div>
+    <h3 data-i18n="introHow">🛠 How to install &amp; use</h3>
+    <div class="igrid3">
+      <div class="istep"><div class="n">1</div><div><b data-i18n="s1t">Pick a skill &amp; open GitHub</b><p data-i18n="s1d">Browse the directory, open the card that matches your task and hit the GitHub button to see the source, docs and license.</p></div></div>
+      <div class="istep"><div class="n">2</div><div><b data-i18n="s2t">Drop it into your skills folder</b><p data-i18n="s2d">Copy the skill folder into ~/.claude/skills/ for personal use, or .claude/skills/ inside a project to share it via git. Some repos install as plugins — follow their README.</p></div></div>
+      <div class="istep"><div class="n">3</div><div><b data-i18n="s3t">Just ask — it triggers itself</b><p data-i18n="s3d">Skills activate automatically when your request matches their description, or name them explicitly: “use the pdf skill to build a fillable form”.</p></div></div>
+    </div>
+    <p class="icodesc" data-i18n="introWhere">Where skills live:</p>
+    <div class="igrid3">
+      <div class="ipath"><b data-i18n="p1t">💻 Claude Code — personal</b><p data-i18n="p1d">Available in every project on your machine.</p><code>~/.claude/skills/&lt;name&gt;/SKILL.md</code></div>
+      <div class="ipath"><b data-i18n="p2t">📁 Claude Code — project</b><p data-i18n="p2d">Committed to the repo, shared with the whole team.</p><code>.claude/skills/&lt;name&gt;/SKILL.md</code></div>
+      <div class="ipath"><b data-i18n="p3t">🌐 Claude apps &amp; marketplaces</b><p data-i18n="p3d">Upload zipped skills under Settings → Capabilities, or install skill plugins via a marketplace (/plugin).</p></div>
+    </div>
+    <div class="inotes">
+      <div class="inote tip"><b data-i18n="tipT">💡 Want to write your own?</b><span data-i18n="tipD">Don’t start from a blank page: the official skill-creator skill interviews you about the task and generates a well-structured SKILL.md for you. Find it in the anthropics/skills card below.</span></div>
+      <div class="inote safe"><b data-i18n="safeT">🛡️ Vet before you install</b><span data-i18n="safeD">A skill is instructions plus executable code. Prefer official repos, skim what you install, and scan third-party collections — e.g. with NVIDIA SkillSpector. Every link here was opened and verified by hand.</span></div>
+    </div>
+    <div class="iend"><a class="hbtn pri" href="#skills" id="introCta" data-i18n="introCta">Got it — browse the directory ↓</a></div>
+  </div>
+</div>
+
 <script type="module">
 const DATA = {/*DATA:START*/"d":"2026-10-07","s":[{"id":"anthropic-skills","n":"Anthropic Skills","a":"anthropics","u":"https://github.com/anthropics/skills","st":179993,"c":"official","de":"The official Anthropic skills repo: document powerhouses (docx, pptx, xlsx, pdf), skill-creator for authoring your own, mcp-builder, frontend-design, web-artifacts-builder, canvas-design and more — installable as a plugin marketplace.","dz":"Anthropic 官方技能仓库：文档四件套（Word/PPT/Excel/PDF）、自己写技能用的 skill-creator、mcp-builder、frontend-design、web-artifacts-builder、canvas-design 等，可作为插件市场一键安装。","h":"Install via the Claude Code plugin marketplace (anthropics/skills), or copy any skill folder into your skills directory.","hz":"用 Claude Code 插件市场安装（anthropics/skills），或把任意技能文件夹复制进你的技能目录。","t":"docx pptx xlsx pdf skill-creator mcp-builder frontend-design official 官方 文档","f":true,"xh":null,"x":null},{"id":"superpowers","n":"Superpowers","a":"obra · Jesse Vincent","u":"https://github.com/obra/superpowers","st":296190,"c":"dev","de":"Jesse Vincent's agentic skills framework and software development methodology: TDD, debugging, planning and collaboration skills that turn Claude Code into a disciplined engineer. The project that kicked off the skills boom.","dz":"Jesse Vincent 的智能体技能框架与软件开发方法论：TDD、调试、计划、协作等技能，把 Claude Code 变成守纪律的工程师——引爆整个技能生态的项目。","h":"Install as a Claude Code plugin from its marketplace (see README).","hz":"作为 Claude Code 插件从其市场安装（见 README）。","t":"tdd debugging planning methodology framework 工程化 方法论","f":true,"xh":"obra","x":null},{"id":"agent-reach","n":"Agent-Reach","a":"Panniantong","u":"https://github.com/Panniantong/Agent-Reach","st":92933,"c":"dev","de":"Give your agent eyes on the whole internet: read and search Twitter/X, Reddit, YouTube, GitHub, Bilibili and more from one skill, with content delivered in a form agents can reason over.","dz":"让你的智能体看见整个互联网：一个技能打通 Twitter/X、Reddit、YouTube、GitHub、B站等平台的读取与搜索，把内容变成智能体能推理的形态。","h":"Follow the repo setup to connect platform credentials, then ask your agent to read or search any supported site.","hz":"按仓库说明配置各平台凭据，然后直接让智能体去读或搜索目标平台。","t":"twitter reddit youtube bilibili search research 检索 资讯","f":true,"xh":null,"x":null},{"id":"graphify","n":"Graphify","a":"Graphify-Labs","u":"https://github.com/Graphify-Labs/graphify","st":124530,"c":"dev","de":"Turn any codebase — docs, SQL schemas, configs, PDFs — into a queryable knowledge graph via a /graphify skill, so agents can navigate large systems instead of guessing.","dz":"用 /graphify 技能把任意代码库（文档、SQL schema、配置、PDF）变成可查询的知识图谱，让智能体真正看懂大型系统而不是靠猜。","h":"Install the /graphify skill, point it at a repository and query the generated graph.","hz":"安装 /graphify 技能，指向代码库即可生成并查询知识图谱。","t":"knowledge graph codebase architecture 知识图谱 代码库","f":true,"xh":null,"x":null},{"id":"archify","n":"Archify","a":"tt-a1i","u":"https://github.com/tt-a1i/archify","st":78955,"c":"dev","de":"Turn any idea, plan or codebase into beautiful interactive diagrams. An agent skill for Claude Code, Codex and beyond — great for architecture docs and READMEs.","dz":"把任何想法、计划或代码库变成精美的交互式图表——面向 Claude Code、Codex 等的智能体技能，写架构文档和 README 的利器。","h":"Copy the skill folder into your skills directory and ask your agent to archify a plan or repo.","hz":"把技能文件夹复制进技能目录，让智能体 archify 你的计划或代码库。","t":"diagram visualization architecture 图表 可视化 架构图","f":true,"xh":null,"x":null},{"id":"awesome-claude-skills","n":"Awesome Claude Skills","a":"ComposioHQ","u":"https://github.com/ComposioHQ/awesome-claude-skills","st":76641,"c":"collections","de":"One of the largest curated lists of Claude skills, resources and tools — the fastest way to survey the whole ecosystem from one README.","dz":"规模最大的 Claude 技能精选列表之一：技能、资源、工具一站看全，是从一份 README 通览整个生态的最快方式。","h":"Browse the README and jump into any listed skill repo.","hz":"浏览 README，点进任意技能仓库。","t":"awesome list curated 合集 导航","f":true,"xh":null,"x":null},{"id":"marketing-skills","n":"Marketing Skills","a":"coreyhaines31","u":"https://github.com/coreyhaines31/marketingskills","st":53533,"c":"business","de":"Marketing skills for Claude Code and AI agents: CRO, copywriting, SEO, analytics and growth engineering — a full growth team in skill form.","dz":"面向 Claude Code 与 AI 智能体的营销技能包：CRO、文案、SEO、数据分析、增长工程——一套技能顶一个增长团队。","h":"Copy the skill folders you need into your skills directory.","hz":"把需要的技能文件夹复制进技能目录。","t":"marketing cro copywriting seo growth 营销 增长 文案","f":true,"xh":null,"x":null},{"id":"academic-research","n":"Academic Research Skills","a":"Imbad0202","u":"https://github.com/Imbad0202/academic-research-skills","st":50736,"c":"science","de":"Academic research skills for Claude Code covering the full loop: research → write → review → revise → finalize. Built for literature-heavy, citation-disciplined work.","dz":"覆盖学术研究全流程的 Claude Code 技能：检索 → 写作 → 评审 → 修改 → 定稿，为重文献、守引用规范的研究而生。","h":"Copy the skills into ~/.claude/skills/ and ask your agent to run the research pipeline.","hz":"把技能复制进 ~/.claude/skills/，让智能体按流程跑研究管线。","t":"academic research paper thesis 学术 论文 文献","f":true,"xh":null,"x":null},{"id":"scientific-agent-skills","n":"Scientific Agent Skills","a":"K-Dense-AI","u":"https://github.com/K-Dense-AI/scientific-agent-skills","st":47847,"c":"science","de":"Turn any AI agent into an AI scientist: the top skills library for science — literature review, bioinformatics, analysis pipelines — used by 250,000+ researchers.","dz":"把任意智能体变成 AI 科学家：科学领域第一大技能库，覆盖文献综述、生物信息、分析管线，超过 25 万科研人员在用。","h":"Install the collection and invoke domain skills (e.g. literature review, protein analysis) per task.","hz":"安装合集后按任务调用领域技能（文献综述、蛋白分析等）。","t":"science bioinformatics literature research 科学 科研 生物信息","f":true,"xh":null,"x":null},{"id":"cybersecurity-skills","n":"Cybersecurity Skill Pack","a":"mukul975","u":"https://github.com/mukul975/Anthropic-Cybersecurity-Skills","st":33882,"c":"security","de":"817 structured cybersecurity skills for AI agents, mapped to 6 frameworks including MITRE ATT&CK and NIST CSF 2.0 — defensive coverage you can audit.","dz":"817 个结构化网络安全技能，映射到 MITRE ATT&CK、NIST CSF 2.0 等 6 大框架——可审计的防御知识库。","h":"Copy the framework-aligned skill folders you need into your skills directory.","hz":"把所需框架对应的技能文件夹复制进技能目录。","t":"cybersecurity mitre nist defense 网络安全 防御 红线蓝队","f":false,"xh":null,"x":null},{"id":"book-to-skill","n":"Book to Skill","a":"virgiliojr94","u":"https://github.com/virgiliojr94/book-to-skill","st":34020,"c":"toolbox","de":"Turn any technical book PDF into a Claude Code skill — ready to study, reference and use while you work. Books stop gathering dust.","dz":"把任何技术书 PDF 变成 Claude Code 技能——边工作边随时调用、随时查阅，让买过的书不再吃灰。","h":"Feed it a book PDF; it generates a study-ready skill folder.","hz":"喂给它一本书的 PDF，自动生成可学习的技能文件夹。","t":"book pdf learning study 读书 学习 转技能","f":false,"xh":null,"x":null},{"id":"hallmark","n":"Hallmark","a":"Nutlope","u":"https://github.com/Nutlope/hallmark","st":29711,"c":"design","de":"An anti-AI-slop design skill for Claude Code, Cursor and Codex: opinionated design taste so generated UI stops looking generated.","dz":"面向 Claude Code、Cursor、Codex 的反 AI 味设计技能：内置主见的设计品味，让生成的 UI 不再一眼假。","h":"Add the skill to your agent's skills directory; design rules apply to every UI task.","hz":"把技能加入智能体技能目录，之后所有 UI 任务自动带上设计规则。","t":"design ui taste anti-slop 设计 审美","f":true,"xh":null,"x":null},{"id":"cloudflare-security-audit","n":"Cloudflare Security Audit","a":"cloudflare","u":"https://github.com/cloudflare/security-audit-skill","st":25591,"c":"official","de":"Cloudflare's official coding-agent skill for multi-phase security audits, with independently verified, machine-readable findings.","dz":"Cloudflare 官方的编码智能体安全审计技能：多阶段审计，产出可独立验证、机器可读的结果。","h":"Install the skill, then ask your agent to audit a repo or diff.","hz":"安装技能后，让智能体对仓库或 diff 做安全审计。","t":"security audit vulnerability 安全 审计 漏洞","f":false,"xh":null,"x":null},{"id":"game-studios","n":"Claude Code Game Studios","a":"Donchitos","u":"https://github.com/Donchitos/Claude-Code-Game-Studios","st":25844,"c":"dev","de":"Turn Claude Code into a full game dev studio: 49 AI agents, 72 workflow skills and a complete coordination system for shipping games.","dz":"把 Claude Code 变成完整的游戏工作室：49 个 AI 智能体、72 个工作流技能和一整套协作调度系统。","h":"Install the collection and assign studio roles (design, code, art, QA) to your agent.","hz":"安装合集后，给智能体分配工作室角色（策划/程序/美术/QA）。","t":"game dev unity godot studio 游戏 开发 工作室","f":false,"xh":null,"x":null},{"id":"planning-with-files","n":"Planning with Files","a":"OthmanAdi","u":"https://github.com/OthmanAdi/planning-with-files","st":27315,"c":"dev","de":"Persistent file-based planning for AI coding agents: crash-proof markdown plans, session memory and long-running task state that survives restarts.","dz":"面向 AI 编码智能体的持久化文件规划：防崩溃的 markdown 计划、会话记忆与长任务状态，重启也不丢。","h":"Copy into your skills directory; plans live in markdown files next to your code.","hz":"复制进技能目录；计划以 markdown 文件形式与代码同库存放。","t":"planning tasks memory plan 计划 任务管理","f":false,"xh":null,"x":null},{"id":"claude-skills-pack","n":"Claude Skills Mega-Pack","a":"alirezarezvani","u":"https://github.com/alirezarezvani/claude-skills","st":27800,"c":"collections","de":"A mega-pack of 380 Claude Code skills plus 30+ agents and 70+ custom commands — breadth first, ideal for assembling your own toolkit.","dz":"380 个 Claude Code 技能 + 30 多个 agent + 70 多个自定义命令的超大合集——广度优先，适合自己攒工具箱。","h":"Browse categories and copy the skills you want into your skills directory.","hz":"按分类浏览，把想要的技能复制进技能目录。","t":"mega pack collection 大合集 插件","f":false,"xh":null,"x":null},{"id":"huashu-design","n":"Huashu Design","a":"alchaincyf · 花叔","u":"https://github.com/alchaincyf/huashu-design","st":24641,"c":"design","de":"Huashu's HTML-native design skill for Claude Code: high-fidelity prototypes, slides and animation pages generated as pure HTML — a community favorite for beautiful output.","dz":"花叔的 Claude Code HTML 原生设计技能：高保真原型、幻灯片、动效页直接产出纯 HTML——社区公认的高颜值输出。","h":"Copy into ~/.claude/skills/ and ask for prototypes, slides or poster pages in HTML.","hz":"复制进 ~/.claude/skills/，直接要求产出 HTML 原型、幻灯片或海报页。","t":"design html prototype slides 设计 原型 幻灯片 高颜值","f":true,"xh":"alchaincyf","x":null},{"id":"khazix-skills","n":"Khazix Skills","a":"KKKKhazix · 数字生命卡兹克","u":"https://github.com/KKKKhazix/khazix-skills","st":21215,"c":"collections","de":"Khazix's open-source AI skills collection: leader (goal definition), neat-freak, hv-analysis, khazix-writer and more — practical Chinese-community favorites.","dz":"数字生命卡兹克开源的 AI 技能合集：leader（帮你定义目标）、neat-freak 洁癖、hv-analysis、khazix-writer 等，中文圈实测好用的口碑之作。","h":"Copy the skills you want into your skills directory (README in Chinese).","hz":"把想要的技能复制进技能目录（README 为中文）。","t":"collection chinese writer analysis 合集 中文 写作","f":false,"xh":null,"x":null},{"id":"notebooklm-py","n":"NotebookLM Py","a":"teng-lin","u":"https://github.com/teng-lin/notebooklm-py","st":19634,"c":"toolbox","de":"Unofficial Python API and agentic skill for Google NotebookLM: full programmatic access to notebooks, sources and generated content.","dz":"Google NotebookLM 的非官方 Python API 与智能体技能：笔记本、来源与生成内容全量可编程操控。","h":"pip install the package, then use the bundled agent skill to drive NotebookLM.","hz":"pip 安装后，用附带的智能体技能驱动 NotebookLM。","t":"notebooklm google api python","f":false,"xh":null,"x":null},{"id":"skillspector","n":"SkillSpector","a":"NVIDIA","u":"https://github.com/NVIDIA/SkillSpector","st":19604,"c":"security","de":"NVIDIA's security scanner for AI agent skills: detects vulnerabilities, malicious patterns, prompt injection and risky code before you install a SKILL.md.","dz":"NVIDIA 出品的技能安全扫描器：在安装任何 SKILL.md 之前，检出漏洞、恶意模式、提示词注入与危险代码。","h":"Run SkillSpector against any skill folder or collection before installing it.","hz":"安装前对任意技能文件夹或合集跑一遍 SkillSpector。","t":"security scanner audit safety 安全 扫描 审计","f":false,"xh":null,"x":null},{"id":"humanizer-zh","n":"Humanizer-zh","a":"op7418 · 歸藏","u":"https://github.com/op7418/Humanizer-zh","st":19042,"c":"writing","de":"Guizang's Chinese edition of Humanizer, the Claude Code skill that strips AI-generated traces from text — rhythm, vocabulary and structure all de-slopped.","dz":"歸藏汉化的 Humanizer：Claude Code 技能，专治文本里的 AI 味——从节奏、用词到结构逐层去机器感。","h":"Copy into ~/.claude/skills/, then ask your agent to humanize a draft.","hz":"复制进 ~/.claude/skills/，让智能体 humanize 你的稿子。","t":"humanizer chinese writing de-ai 去AI味 中文 写作 润色","f":false,"xh":"op7418","x":null},{"id":"claude-seo","n":"Claude SEO","a":"AgriciDaniel","u":"https://github.com/AgriciDaniel/claude-seo","st":18459,"c":"business","de":"Universal SEO skill for Claude Code: 26 sub-skills and 19 sub-agents covering technical SEO, E-E-A-T, schema and content optimization.","dz":"通用 SEO 技能：26 个子技能 + 19 个子 agent，覆盖技术 SEO、E-E-A-T、结构化数据与内容优化。","h":"Install the skill pack and ask for audits, keyword plans or schema markup.","hz":"安装技能包后，直接要求站点审计、关键词规划或 schema 标记。","t":"seo schema eeat keywords 搜索优化 关键词","f":false,"xh":null,"x":null},{"id":"skillopt","n":"SkillOpt","a":"microsoft · MSR","u":"https://github.com/microsoft/SkillOpt","st":18095,"c":"toolbox","de":"Microsoft Research's text-space optimizer that trains reusable natural-language skills for frozen LLM agents — the science of making skills better.","dz":"微软研究院的文本空间优化器：为冻结参数的 LLM 智能体训练可复用的自然语言技能——把「技能怎么变强」变成科学。","h":"Research toolkit: clone, prepare your task set and optimize skills per the repo guide.","hz":"研究工具箱：克隆仓库，按指南准备任务集并优化技能。","t":"optimization research training 优化 训练 研究","f":false,"xh":null,"x":null},{"id":"aris-research","n":"ARIS Research","a":"wanshuiyin","u":"https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep","st":17076,"c":"science","de":"ARIS (Auto-Research-In-Sleep): markdown-only skills for autonomous ML research — cross-model review and experiment loops that run while you sleep.","dz":"ARIS（睡着也能做科研）：纯 markdown 的自主科研技能——跨模型评审与实验循环，睡前挂机、醒来看结果。","h":"Install the ARIS skills and launch an overnight research loop.","hz":"安装 ARIS 技能后，启动过夜科研循环。","t":"autonomous ml research experiment 自动 科研 实验","f":false,"xh":null,"x":null},{"id":"awesome-claude-skills-travis","n":"Awesome Claude Skills · travisvn","a":"travisvn","u":"https://github.com/travisvn/awesome-claude-skills","st":15301,"c":"collections","de":"A well-maintained curated list of awesome Claude skills, resources and tools with clear category navigation.","dz":"维护良好的 Claude 技能精选列表：分类清晰、收录讲究的技能/资源/工具导航。","h":"Browse the README by category and follow links out to each skill.","hz":"按分类浏览 README，点进具体技能。","t":"awesome list curated 合集 导航","f":false,"xh":null,"x":null},{"id":"skill-seekers","n":"Skill Seekers","a":"yusufkaraaslan","u":"https://github.com/yusufkaraaslan/Skill_Seekers","st":15111,"c":"toolbox","de":"Convert documentation sites, GitHub repos and PDFs into Claude-ready skills automatically, with conflict detection when merging sources.","dz":"把文档站、GitHub 仓库和 PDF 自动转成 Claude 技能，合并多来源时还能自动检测冲突。","h":"Run the converter against a docs URL, repo or PDF to emit a skill folder.","hz":"对文档 URL、仓库或 PDF 跑转换脚本，产出技能文件夹。","t":"converter docs pdf scrape 转换 文档 抓取","f":false,"xh":null,"x":null},{"id":"prompt-master","n":"Prompt Master","a":"nidhinjs","u":"https://github.com/nidhinjs/prompt-master","st":14134,"c":"writing","de":"A skill that writes accurate prompts for any AI tool — full context assembly with zero tokens wasted on guesswork.","dz":"帮任何 AI 工具写准提示词的技能：完整上下文组装，不浪费一个 token 在瞎猜上。","h":"Install the skill and ask it to draft or fix a prompt.","hz":"安装技能后，让它起草或修复你的提示词。","t":"prompt engineering 提示词 工程","f":false,"xh":null,"x":null},{"id":"ai-guide","n":"AI Guide · 程序员鱼皮","a":"liyupi","u":"https://github.com/liyupi/ai-guide","st":20773,"c":"collections","de":"Yupi's AI resource compendium plus zero-basics vibe coding tutorials: model playbooks, OpenClaw walkthroughs and skills guidance for Chinese developers.","dz":"程序员鱼皮的 AI 资源大全 + Vibe Coding 零基础教程：大模型玩法、OpenClaw 保姆级教程与技能使用指南，中文开发者友好。","h":"Read the guide; follow its curated links into tools and skills.","hz":"直接阅读指南，按其精选链接进入各工具与技能。","t":"tutorial chinese guide resources 教程 资源 中文","f":false,"xh":null,"x":null},{"id":"microsoft-skills","n":"Microsoft Skills","a":"microsoft","u":"https://github.com/microsoft/skills","st":3088,"c":"official","de":"Microsoft's official skills, MCP servers, custom agents and AGENTS.md templates for grounding coding agents across their SDKs and developer stack.","dz":"微软官方出品：技能、MCP 服务器、自定义 agent 与 AGENTS.md 模板，为其 SDK 与开发者工具链的编码智能体提供接地能力。","h":"Browse the catalog and follow per-skill install instructions.","hz":"浏览目录，按各技能说明安装。","t":"mcp agents templates microsoft 微软 官方","f":false,"xh":null,"x":null},{"id":"swiftui-expert","n":"SwiftUI Expert Skill","a":"AvdLee","u":"https://github.com/AvdLee/SwiftUI-Agent-Skill","st":3665,"c":"dev","de":"Expert SwiftUI best-practices guidance in the open Agent Skills format — keeping generated Swift code production-grade.","dz":"以开放 Agent Skills 格式提供的 SwiftUI 专家级最佳实践——让生成的 Swift 代码达到生产级水准。","h":"Copy the swiftui-expert-skill folder into your agent's skills directory.","hz":"把 swiftui-expert-skill 文件夹复制进智能体技能目录。","t":"swiftui ios swift mobile 苹果 移动开发","f":false,"xh":null,"x":null},{"id":"awesome-design-skills","n":"Awesome Design Skills","a":"bergside","u":"https://github.com/bergside/awesome-design-skills","st":3071,"c":"design","de":"67 curated DESIGN.md and SKILL.md design files for agentic tools — aesthetic families you can mix into any UI project.","dz":"67 个精选 DESIGN.md / SKILL.md 设计文件——按美学族系归类，可混搭进任何 UI 项目。","h":"Pick a design file and drop it into your project as a skill or design context.","hz":"挑一个设计文件，作为技能或设计上下文放进项目。","t":"design aesthetics ui 设计 美学 风格","f":false,"xh":null,"x":null},{"id":"sepia","n":"Sepia","a":"Nanako0129","u":"https://github.com/Nanako0129/sepia","st":3009,"c":"writing","de":"De-AI writing skill compatible with 77+ Agent Skills agents (native plugins for Claude and more): repairs narrative structure and humanizes prose.","dz":"兼容 77+ 智能体的去 AI 味写作技能（Claude 等有原生插件）：修复叙事结构，让文字读起来像人写的。","h":"Install via its CLI or copy the skill folder; works across many agents.","hz":"用其 CLI 安装或直接复制技能文件夹，多智能体通用。","t":"writing fiction prose de-ai 写作 小说 文学 去AI味","f":false,"xh":null,"x":null},{"id":"angular-skills","n":"Angular Skills","a":"angular","u":"https://github.com/angular/skills","st":670,"c":"official","de":"The Angular team's official agent skills — framework-accurate guidance for building and modernizing Angular apps with coding agents.","dz":"Angular 团队官方智能体技能——用编码智能体开发/升级 Angular 应用时，给出与框架精确对齐的指导。","h":"Follow the repo instructions to add angular-developer and angular-new-app skills.","hz":"按仓库说明安装 angular-developer 与 angular-new-app 技能。","t":"angular frontend web 前端 官方","f":false,"xh":null,"x":null},{"id":"frontend-toolkit","n":"Frontend Design Toolkit","a":"wilwaldon","u":"https://github.com/wilwaldon/Claude-Code-Frontend-Design-Toolkit","st":1173,"c":"design","de":"A battle-tested bundle of skills, plugins and MCP servers that measurably improve Claude Code's frontend output.","dz":"经过实战检验的技能/插件/MCP 组合包，实打实提升 Claude Code 的前端产出质量。","h":"Install components à la carte per the README.","hz":"按 README 挑选需要的组件安装。","t":"frontend design toolkit 前端 设计 工具箱","f":false,"xh":null,"x":null},{"id":"awesome-claude-design","n":"Awesome Claude Design","a":"rohitg00","u":"https://github.com/rohitg00/awesome-claude-design","st":1123,"c":"design","de":"DESIGN.md prompt packs organized by aesthetic family, plus remix recipes, skills and video teardowns for design-minded agent work.","dz":"按美学族系组织的 DESIGN.md 提示词包，附混搭配方、技能与视频拆解，面向有设计追求的智能体工作流。","h":"Copy a DESIGN.md aesthetic into your project or install the accompanying skills.","hz":"把心仪的 DESIGN.md 美学复制进项目，或安装随附技能。","t":"design aesthetics prompts 设计 美学 风格","f":false,"xh":null,"x":null},{"id":"gamedev-skills","n":"Gamedev Agent Skills","a":"gamedev-skills","u":"https://github.com/gamedev-skills/awesome-gamedev-agent-skills","st":1348,"c":"dev","de":"74 game-dev skills for AI coding agents: Godot, Unity, Unreal, Phaser, PixiJS, three.js, Bevy, pygame, LÖVE and more.","dz":"74 个游戏开发技能：Godot、Unity、Unreal、Phaser、PixiJS、three.js、Bevy、pygame、LÖVE 等引擎全覆盖。","h":"Copy the engine-specific skills you need into your skills directory.","hz":"把对应引擎的技能复制进技能目录。","t":"godot unity unreal phaser threejs 游戏引擎 游戏开发","f":false,"xh":null,"x":null},{"id":"self-learning","n":"Self-Learning Skills","a":"Kulaxyz","u":"https://github.com/Kulaxyz/self-learning-skills","st":960,"c":"dev","de":"A self-improving skill: recognize hard-won golden paths while coding and persist them as reusable skills for the next run.","dz":"会自我进化的技能：编码中识别来之不易的黄金路径，沉淀成可复用技能，越用越顺手。","h":"Install the skill; it captures lessons automatically as you work.","hz":"安装后它会随你的工作自动沉淀经验。","t":"self-improving memory learning 自我进化 记忆 学习","f":false,"xh":null,"x":null},{"id":"video-spec-builder","n":"Video Spec Builder","a":"feicaiclub","u":"https://github.com/feicaiclub/video-spec-builder","st":1015,"c":"dev","de":"Turns 'I want a video' into a second-precise storyboard spec (video-spec.md) for HyperFrames to render — one command installs it into Claude Code / Cursor / Codex.","dz":"把「我想做个视频」逼成精确到秒的分镜脚本 video-spec.md，交给 HyperFrames 渲染——一条命令装进 Claude Code / Cursor / Codex。","h":"One-line install command from the README, then describe the video you want.","hz":"README 里一行命令安装，然后直接描述你想要的视频。","t":"video storyboard spec 视频 分镜 脚本","f":false,"xh":null,"x":null},{"id":"huashu-md-html","n":"Huashu md↔html","a":"alchaincyf · 花叔","u":"https://github.com/alchaincyf/huashu-md-html","st":908,"c":"writing","de":"Huashu's bidirectional md/html pipeline: anything → markdown, markdown → beautiful HTML, HTML → markdown — wrapping markitdown, Pandoc and html-to-markdown.","dz":"花叔的 md/html 双向流水线：万物→md、md→精美 HTML、HTML→md 一站式，封装 markitdown、Pandoc 与 html-to-markdown。","h":"Install the skill and ask for format conversions in conversation.","hz":"安装技能后，对话里直接要求格式转换。","t":"markdown html convert pandoc 转换 排版","f":false,"xh":"alchaincyf","x":null},{"id":"lambdatest-agent-skills","n":"LambdaTest Agent Skills","a":"LambdaTest","u":"https://github.com/LambdaTest/agent-skills","st":377,"c":"official","de":"LambdaTest's official collection of 50+ testing skills: Playwright, Selenium, Cypress, Appium, pytest, Jest and more, wired to their cloud test platform.","dz":"LambdaTest 官方 50+ 测试技能合集：Playwright、Selenium、Cypress、Appium、pytest、Jest 等，直连其云测试平台。","h":"Pick framework skills from the repo and follow per-skill setup.","hz":"从仓库挑选框架技能，按各自说明接入。","t":"testing playwright selenium cypress 测试 自动化","f":false,"xh":null,"x":null},{"id":"courier-notifications","n":"Courier Notifications","a":"trycourier","u":"https://github.com/trycourier/courier-skills","st":14,"c":"official","de":"Courier's official skill for building production-ready notifications across email, SMS, push, in-app, Slack and Teams.","dz":"Courier 官方技能：构建覆盖邮件、短信、推送、应用内、Slack 与 Teams 的生产级通知系统。","h":"Install the skill and describe the notification flow you need.","hz":"安装技能后，直接描述你要的通知流程。","t":"notifications email push slack 通知 邮件 推送","f":false,"xh":null,"x":null},{"id":"charlie-cfo","n":"Charlie CFO Skill","a":"EveryInc","u":"https://github.com/EveryInc/charlie-cfo-skill","st":324,"c":"business","de":"A Claude Code skill for bootstrapped CFO work — financial modeling, runway and unit economics discipline, named after Charlie Munger.","dz":"面向精益创业的 CFO 技能：财务建模、现金流跑道与单位经济性纪律，以 Charlie Munger 命名。","h":"Copy into your skills directory and ask CFO questions with your numbers.","hz":"复制进技能目录，带上你的数据直接问财务问题。","t":"cfo finance startup runway 财务 创业 现金流","f":false,"xh":null,"x":null}]/*DATA:END*/};
 const CATS = ["official","collections","dev","writing","design","science","security","business","toolbox"];
 const I18N = {
 en:{
-  navAbout:"What are Skills",navGuide:"How to use",navSkills:"Directory",navFaq:"FAQ",navMore:"Reading",
+  navGuide:"Guide",navSkills:"Directory",navFaq:"FAQ",navMore:"Reading",
+  heroGuide:"📖 New to skills? 60-second guide",heroBrowse:"Browse the directory ↓",
+  introTitle:"AI agent skills — the 60-second guide",introSub:"Everything you need before picking your first skill.",
+  introWhat:"📦 What is a skill?",introHow:"🛠 How to install & use",introWhere:"Where skills live:",
+  introCta:"Got it — browse the directory ↓",introClose:"Close",
+  dirHintPre:"🆕 First time here?",dirHintLink:"Open the 60-second guide →",
   heroEyebrow:"🧩 Curated AI Agent Skills Directory",
   heroTitle:'Every great <em>AI agent skill</em>, in one place',
   heroSub:"A hand-curated, link-verified collection of the best SKILL.md packages — official releases from Anthropic, Microsoft & Cloudflare, plus the strongest community skills. Each card explains what it does, how to install it, and links straight to GitHub.",
@@ -695,7 +745,12 @@ en:{
   docDesc:"A hand-curated, link-verified directory of AI agent skills (SKILL.md): official skills from Anthropic, Microsoft, Cloudflare & more, plus the best community collections."
 },
 zh:{
-  navAbout:"什么是技能",navGuide:"安装使用",navSkills:"技能目录",navFaq:"常见问题",navMore:"延伸阅读",
+  navGuide:"新手指南",navSkills:"技能目录",navFaq:"常见问题",navMore:"延伸阅读",
+  heroGuide:"📖 第一次接触技能？60 秒入门",heroBrowse:"直接逛目录 ↓",
+  introTitle:"AI 智能体技能 · 60 秒入门",introSub:"挑第一个技能之前，看这一篇就够了。",
+  introWhat:"📦 技能是什么？",introHow:"🛠 怎么安装、怎么用",introWhere:"技能放在哪里：",
+  introCta:"明白了——去逛目录 ↓",introClose:"关闭",
+  dirHintPre:"🆕 第一次来？",dirHintLink:"看 60 秒入门指南 →",
   heroEyebrow:"🧩 AI Agent Skills 精选目录",
   heroTitle:'把优秀的 <em>AI 智能体技能</em>一网收尽',
   heroSub:"人工精选、逐链接验证的 SKILL.md 技能合集——既有 Anthropic、微软、Cloudflare 的官方出品，也有最强的社区技能。每张卡片讲清楚它是什么、怎么装，并直达 GitHub 仓库。",
@@ -834,6 +889,20 @@ function buildChips(){
   let deb; $("#q").addEventListener("input",e=>{clearTimeout(deb);deb=setTimeout(()=>{q=e.target.value.trim();render()},120)});
   $("#sort").addEventListener("change",e=>{sort=e.target.value;render()});
 })();
+
+/* ---- intro modal: auto-open once, then via button ---- */
+const INTRO_KEY="skillgems-intro-seen";
+const modal=$("#introModal");
+function openIntro(){modal.hidden=false;document.body.classList.add("mopen")}
+function closeIntro(){if(modal.hidden)return;modal.hidden=true;document.body.classList.remove("mopen");try{localStorage.setItem(INTRO_KEY,"1")}catch(e){}}
+$("#btnIntro").addEventListener("click",openIntro);
+$("#navIntro").addEventListener("click",e=>{e.preventDefault();openIntro()});
+$("#dirIntroLink").addEventListener("click",e=>{e.preventDefault();openIntro()});
+$("#introClose").addEventListener("click",closeIntro);
+$("#introCta").addEventListener("click",e=>{e.preventDefault();closeIntro();const sk=document.getElementById("skills");if(sk)sk.scrollIntoView({behavior:"instant",block:"start"})});
+modal.addEventListener("click",e=>{if(e.target===modal)closeIntro()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeIntro()});
+try{ if(!localStorage.getItem(INTRO_KEY)) setTimeout(openIntro,700); }catch(e){}
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "948f2535a9dd4775a436c677b3c950e4"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
