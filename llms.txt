@@ -1,6 +1,6 @@
 # SkillGems
 
-> Curated, link-verified directory of 42 AI agent skills (SKILL.md format): official releases from Anthropic, Microsoft, Cloudflare, Angular, LambdaTest plus the strongest community collections. Every link verified 2026-10-07. Agents: fetch https://skillgems.kuige.me/data/catalog.json for the full machine-readable catalog.
+> Curated, link-verified directory of 0 AI agent skills (SKILL.md format). Every entry is hand-picked and manually added by the curator; each link is opened and verified before it goes live. Agents: fetch https://skillgems.kuige.me/data/catalog.json for the machine-readable catalog (currently 0 entries — the catalog fills up as curation proceeds).
 
 ## Quick start for agents
 
@@ -8,72 +8,3 @@
 2. Filter by `category` (official/collections/dev/writing/design/science/security/business/toolbox) or search `tags`.
 3. Open the entry's GitHub `url` and follow its README for the exact install path (default: copy the skill folder to `~/.claude/skills/`).
 4. Treat skills as code: review contents and license before installing.
-
-## Official (6)
-
-- [Anthropic Skills](https://github.com/anthropics/skills): The official Anthropic skills repo: document powerhouses (docx, pptx, xlsx, pdf), skill-creator for authoring your own, mcp-builder, frontend-design, web-artifacts-builder, canvas-design and more — installable as a plugin marketplace. (★180k)
-- [Cloudflare Security Audit](https://github.com/cloudflare/security-audit-skill): Cloudflare's official coding-agent skill for multi-phase security audits, with independently verified, machine-readable findings. (★25.6k)
-- [Microsoft Skills](https://github.com/microsoft/skills): Microsoft's official skills, MCP servers, custom agents and AGENTS.md templates for grounding coding agents across their SDKs and developer stack. (★3.1k)
-- [Angular Skills](https://github.com/angular/skills): The Angular team's official agent skills — framework-accurate guidance for building and modernizing Angular apps with coding agents. (★670)
-- [LambdaTest Agent Skills](https://github.com/LambdaTest/agent-skills): LambdaTest's official collection of 50+ testing skills: Playwright, Selenium, Cypress, Appium, pytest, Jest and more, wired to their cloud test platform. (★377)
-- [Courier Notifications](https://github.com/trycourier/courier-skills): Courier's official skill for building production-ready notifications across email, SMS, push, in-app, Slack and Teams. (★14)
-
-## Collections (5)
-
-- [Awesome Claude Skills](https://github.com/ComposioHQ/awesome-claude-skills): One of the largest curated lists of Claude skills, resources and tools — the fastest way to survey the whole ecosystem from one README. (★76.6k)
-- [Claude Skills Mega-Pack](https://github.com/alirezarezvani/claude-skills): A mega-pack of 380 Claude Code skills plus 30+ agents and 70+ custom commands — breadth first, ideal for assembling your own toolkit. (★27.8k)
-- [Khazix Skills](https://github.com/KKKKhazix/khazix-skills): Khazix's open-source AI skills collection: leader (goal definition), neat-freak, hv-analysis, khazix-writer and more — practical Chinese-community favorites. (★21.2k)
-- [AI Guide · 程序员鱼皮](https://github.com/liyupi/ai-guide): Yupi's AI resource compendium plus zero-basics vibe coding tutorials: model playbooks, OpenClaw walkthroughs and skills guidance for Chinese developers. (★20.8k)
-- [Awesome Claude Skills · travisvn](https://github.com/travisvn/awesome-claude-skills): A well-maintained curated list of awesome Claude skills, resources and tools with clear category navigation. (★15.3k)
-
-## Dev (10)
-
-- [Superpowers](https://github.com/obra/superpowers): Jesse Vincent's agentic skills framework and software development methodology: TDD, debugging, planning and collaboration skills that turn Claude Code into a disciplined engineer. The project that kicked off the skills boom. (★296.2k)
-- [Graphify](https://github.com/Graphify-Labs/graphify): Turn any codebase — docs, SQL schemas, configs, PDFs — into a queryable knowledge graph via a /graphify skill, so agents can navigate large systems instead of guessing. (★124.5k)
-- [Agent-Reach](https://github.com/Panniantong/Agent-Reach): Give your agent eyes on the whole internet: read and search Twitter/X, Reddit, YouTube, GitHub, Bilibili and more from one skill, with content delivered in a form agents can reason over. (★92.9k)
-- [Archify](https://github.com/tt-a1i/archify): Turn any idea, plan or codebase into beautiful interactive diagrams. An agent skill for Claude Code, Codex and beyond — great for architecture docs and READMEs. (★79k)
-- [Planning with Files](https://github.com/OthmanAdi/planning-with-files): Persistent file-based planning for AI coding agents: crash-proof markdown plans, session memory and long-running task state that survives restarts. (★27.3k)
-- [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios): Turn Claude Code into a full game dev studio: 49 AI agents, 72 workflow skills and a complete coordination system for shipping games. (★25.8k)
-- [SwiftUI Expert Skill](https://github.com/AvdLee/SwiftUI-Agent-Skill): Expert SwiftUI best-practices guidance in the open Agent Skills format — keeping generated Swift code production-grade. (★3.7k)
-- [Gamedev Agent Skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills): 74 game-dev skills for AI coding agents: Godot, Unity, Unreal, Phaser, PixiJS, three.js, Bevy, pygame, LÖVE and more. (★1.3k)
-- [Video Spec Builder](https://github.com/feicaiclub/video-spec-builder): Turns 'I want a video' into a second-precise storyboard spec (video-spec.md) for HyperFrames to render — one command installs it into Claude Code / Cursor / Codex. (★1k)
-- [Self-Learning Skills](https://github.com/Kulaxyz/self-learning-skills): A self-improving skill: recognize hard-won golden paths while coding and persist them as reusable skills for the next run. (★960)
-
-## Writing (4)
-
-- [Humanizer-zh](https://github.com/op7418/Humanizer-zh): Guizang's Chinese edition of Humanizer, the Claude Code skill that strips AI-generated traces from text — rhythm, vocabulary and structure all de-slopped. (★19k)
-- [Prompt Master](https://github.com/nidhinjs/prompt-master): A skill that writes accurate prompts for any AI tool — full context assembly with zero tokens wasted on guesswork. (★14.1k)
-- [Sepia](https://github.com/Nanako0129/sepia): De-AI writing skill compatible with 77+ Agent Skills agents (native plugins for Claude and more): repairs narrative structure and humanizes prose. (★3k)
-- [Huashu md↔html](https://github.com/alchaincyf/huashu-md-html): Huashu's bidirectional md/html pipeline: anything → markdown, markdown → beautiful HTML, HTML → markdown — wrapping markitdown, Pandoc and html-to-markdown. (★908)
-
-## Design (5)
-
-- [Hallmark](https://github.com/Nutlope/hallmark): An anti-AI-slop design skill for Claude Code, Cursor and Codex: opinionated design taste so generated UI stops looking generated. (★29.7k)
-- [Huashu Design](https://github.com/alchaincyf/huashu-design): Huashu's HTML-native design skill for Claude Code: high-fidelity prototypes, slides and animation pages generated as pure HTML — a community favorite for beautiful output. (★24.6k)
-- [Awesome Design Skills](https://github.com/bergside/awesome-design-skills): 67 curated DESIGN.md and SKILL.md design files for agentic tools — aesthetic families you can mix into any UI project. (★3.1k)
-- [Frontend Design Toolkit](https://github.com/wilwaldon/Claude-Code-Frontend-Design-Toolkit): A battle-tested bundle of skills, plugins and MCP servers that measurably improve Claude Code's frontend output. (★1.2k)
-- [Awesome Claude Design](https://github.com/rohitg00/awesome-claude-design): DESIGN.md prompt packs organized by aesthetic family, plus remix recipes, skills and video teardowns for design-minded agent work. (★1.1k)
-
-## Science (3)
-
-- [Academic Research Skills](https://github.com/Imbad0202/academic-research-skills): Academic research skills for Claude Code covering the full loop: research → write → review → revise → finalize. Built for literature-heavy, citation-disciplined work. (★50.7k)
-- [Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills): Turn any AI agent into an AI scientist: the top skills library for science — literature review, bioinformatics, analysis pipelines — used by 250,000+ researchers. (★47.8k)
-- [ARIS Research](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep): ARIS (Auto-Research-In-Sleep): markdown-only skills for autonomous ML research — cross-model review and experiment loops that run while you sleep. (★17.1k)
-
-## Security (2)
-
-- [Cybersecurity Skill Pack](https://github.com/mukul975/Anthropic-Cybersecurity-Skills): 817 structured cybersecurity skills for AI agents, mapped to 6 frameworks including MITRE ATT&CK and NIST CSF 2.0 — defensive coverage you can audit. (★33.9k)
-- [SkillSpector](https://github.com/NVIDIA/SkillSpector): NVIDIA's security scanner for AI agent skills: detects vulnerabilities, malicious patterns, prompt injection and risky code before you install a SKILL.md. (★19.6k)
-
-## Business (3)
-
-- [Marketing Skills](https://github.com/coreyhaines31/marketingskills): Marketing skills for Claude Code and AI agents: CRO, copywriting, SEO, analytics and growth engineering — a full growth team in skill form. (★53.5k)
-- [Claude SEO](https://github.com/AgriciDaniel/claude-seo): Universal SEO skill for Claude Code: 26 sub-skills and 19 sub-agents covering technical SEO, E-E-A-T, schema and content optimization. (★18.5k)
-- [Charlie CFO Skill](https://github.com/EveryInc/charlie-cfo-skill): A Claude Code skill for bootstrapped CFO work — financial modeling, runway and unit economics discipline, named after Charlie Munger. (★324)
-
-## Toolbox (4)
-
-- [Book to Skill](https://github.com/virgiliojr94/book-to-skill): Turn any technical book PDF into a Claude Code skill — ready to study, reference and use while you work. Books stop gathering dust. (★34k)
-- [NotebookLM Py](https://github.com/teng-lin/notebooklm-py): Unofficial Python API and agentic skill for Google NotebookLM: full programmatic access to notebooks, sources and generated content. (★19.6k)
-- [SkillOpt](https://github.com/microsoft/SkillOpt): Microsoft Research's text-space optimizer that trains reusable natural-language skills for frozen LLM agents — the science of making skills better. (★18.1k)
-- [Skill Seekers](https://github.com/yusufkaraaslan/Skill_Seekers): Convert documentation sites, GitHub repos and PDFs into Claude-ready skills automatically, with conflict detection when merging sources. (★15.1k)
