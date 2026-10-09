@@ -10,9 +10,8 @@
 <link rel="alternate" hreflang="zh" href="https://skillgems.kuige.me/?lang=zh">
 <link rel="alternate" hreflang="x-default" href="https://skillgems.kuige.me/">
 <link rel="alternate" type="text/plain" href="https://skillgems.kuige.me/llms.txt" title="llms.txt">
-<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=1">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SkillGems">
 <meta property="og:title" content="SkillGems — Curated AI Agent Skills Directory">
@@ -64,25 +63,10 @@ a:hover{text-decoration:underline}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 
 /* topbar */
-.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
-.top .wrap{display:flex;align-items:center;gap:14px;height:60px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;color:var(--ink);text-decoration:none}
-.brand:hover{text-decoration:none}
-.brand img{width:30px;height:30px;border-radius:8px;display:block}
-.brand b{letter-spacing:-.2px}
-.brand b i{font-style:normal;color:var(--acc)}
-nav.main{display:flex;gap:2px;margin-left:6px}
-nav.main a{color:var(--mut);font-size:13.5px;padding:6px 10px;border-radius:8px}
-nav.main a:hover{color:var(--ink);background:var(--accsoft);text-decoration:none}
-.tgrow{margin-left:auto;display:flex;align-items:center;gap:8px}
-.kuige-entry{font-size:12.5px;color:var(--mut);padding:5px 10px;border:1px solid var(--bd);border-radius:99px;white-space:nowrap}
-.kuige-entry:hover{color:var(--acc);border-color:var(--acc);text-decoration:none}
 .iconbtn{width:34px;height:34px;border-radius:9px;border:1px solid var(--bd);background:var(--card);color:var(--ink);font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
 .iconbtn:hover{border-color:var(--acc);color:var(--acc)}
 .langbtn{height:34px;padding:0 12px;border-radius:9px;border:1px solid var(--bd);background:var(--card);color:var(--ink);font-size:13px;cursor:pointer}
 .langbtn:hover{border-color:var(--acc);color:var(--acc)}
-@media(max-width:860px){nav.main{display:none}}
-@media(max-width:560px){.kuige-entry span{display:none}.kuige-entry{padding:5px 9px}}
 
 /* hero */
 .hero{padding:64px 0 30px;text-align:center;position:relative;overflow:hidden}
@@ -196,10 +180,6 @@ html[data-theme="dark"] .btn.pri{color:#0b1322}
 @media(max-width:760px){.moregrid{grid-template-columns:1fr}}
 
 /* footer */
-footer{margin-top:64px;border-top:1px solid var(--bd);padding:30px 0 40px;text-align:center;color:var(--mut);font-size:13px}
-footer .codename{margin-top:8px;font-size:12.5px;color:var(--faint)}
-footer .codename b{color:var(--acc2);font-weight:600}
-footer .links{margin-top:10px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
 /* hero buttons + directory hint */
 .hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
@@ -248,27 +228,47 @@ body.mopen{overflow:hidden}
   .top,.toolbar,.chips,.c-actions,footer .links,.imodal,.hero-btns{display:none!important}
   .card,.acard,.step{box-shadow:none;break-inside:avoid}
 }
+/* ── KuiGe 站群统一基座 ───────────────────── */
+:root{--kg-ink:#1f2430;--kg-sub:#6b7280;--kg-accent:#f2603c;--kg-line:#e8e6e1;--kg-bg:#faf9f7}
+.kg-top{position:sticky;top:0;z-index:60;background:rgba(250,249,247,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--kg-line)}
+.kg-top-in{max-width:1120px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.kg-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--kg-ink);font-weight:700;font-size:17px}
+.kg-brand img{width:32px;height:32px;border-radius:9px;display:block}
+.kg-brand small{font-weight:500;color:var(--kg-sub);font-size:12px}
+.kg-nav{display:flex;align-items:center;gap:14px;font-size:14px}
+.kg-nav a{color:var(--kg-sub);text-decoration:none}
+.kg-nav a:hover{color:var(--kg-ink)}
+.kg-entry{background:var(--kg-ink);color:#fff!important;padding:6px 14px;border-radius:999px;text-decoration:none;font-size:13px}
+.kg-entry:hover{background:var(--kg-accent)}
+.kg-foot{background:var(--kg-bg);border-top:1px solid var(--kg-line);color:var(--kg-sub);font-size:13px;margin-top:0}
+.kg-foot-in{max-width:1120px;margin:0 auto;padding:36px 20px 28px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.kg-foot img{width:44px;height:44px;border-radius:12px;margin-bottom:2px}
+.kg-foot-brand{color:var(--kg-ink);font-weight:700;font-size:15px;margin:0}
+.kg-foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px}
+.kg-foot-links a{color:var(--kg-sub);text-decoration:none}
+.kg-foot-links a:hover{color:var(--kg-accent)}
+.kg-foot-copy{margin:4px 0 0;color:#9ca3af;font-size:12px}
+@media(max-width:640px){.kg-nav a:not(.kg-entry){display:none}}
+
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="./">
-      <img src="logo.png?v=1" alt="SkillGems logo" width="30" height="30">
-      <b>Skill<i>Gems</i></b>
+<header class="kg-top">
+  <div class="kg-top-in">
+    <a class="kg-brand" href="./">
+      <img src="favicon.png?v=2" alt="SkillGems 吉祥物">
+      <span>SkillGems<small>AI Agent Skills Directory</small></span>
     </a>
-    <nav class="main" aria-label="Sections">
+    <nav class="kg-nav">
       <a href="#intro" id="navIntro" data-i18n="navGuide">Guide</a>
       <a href="#skills" data-i18n="navSkills">Directory</a>
       <a href="#faq" data-i18n="navFaq">FAQ</a>
       <a href="#more" data-i18n="navMore">Reading</a>
-    </nav>
-    <div class="tgrow">
-      <a class="kuige-entry" href="https://kuige.me/" target="_blank" rel="noopener" title="kuige.me" style="text-decoration:none"><img src="https://kuige.me/logo.png" alt="" width="16" height="16" style="width:16px;height:16px;border-radius:50%;vertical-align:-3px;margin-right:6px">魁歌</a>
+      <a class="kg-entry" href="https://kuige.me/" target="_blank" rel="noopener">魁歌 · 全部作品</a>
       <button class="langbtn" id="btnLang" type="button" aria-label="Switch language">中文</button>
       <button class="iconbtn" id="btnTheme" type="button" aria-label="Toggle theme">◐</button>
-    </div>
+    </nav>
   </div>
 </header>
 
@@ -354,16 +354,20 @@ body.mopen{overflow:hidden}
 
 </main>
 
-<footer>
-  <div class="wrap">
-    <div>© 2026 <a href="https://kuige.me/" target="_blank" rel="noopener">魁歌 KuiGe</a> · SkillGems</div>
-    <div class="codename" data-i18n="codename">Codename · 负屃 — the dragon son who loves the written word, coiled on steles to read every finest text. All the world’s skills, gathered here for AI to read.</div>
-    <div class="links">
+<footer class="kg-foot">
+  <div class="kg-foot-in">
+    <img src="favicon.png?v=2" alt="SkillGems吉祥物">
+    <p class="kg-foot-brand">SkillGems</p>
+    <nav class="kg-foot-links">
+      <a href="https://kuige.me/" target="_blank" rel="noopener">魁歌主页</a>
+      <a href="https://icongems.kuige.me/" target="_blank" rel="noopener">IconGems</a>
+      <a href="https://songgems.kuige.me/" target="_blank" rel="noopener">SongGems</a>
+      <a href="https://github-gems.kuige.me/" target="_blank" rel="noopener">GitHub Gems</a>
       <a href="https://github.com/Tliens/skillgems" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://kuige.me/" target="_blank" rel="noopener">kuige.me</a>
       <a href="/llms.txt" data-i18n="fLlms">llms.txt (for AI)</a>
       <a href="/data/catalog.json" data-i18n="fData">catalog.json</a>
-    </div>
+    </nav>
+    <p class="kg-foot-copy">© 2026 魁歌 KuiGe · 用 AI 构建 · <a href="https://kuige.me/" style="color:inherit">kuige.me</a></p>
   </div>
 </footer>
 
@@ -442,7 +446,6 @@ en:{
   q6:"How is this directory maintained?",a6:"Entries are hand-curated and manually added by the curator — nothing is auto-scraped. Each link is opened and checked before it goes live, and the catalog ships machine-readable data/catalog.json plus llms.txt for AI agents.",
   articlesT:"📄 Essential reading",art1:"Official launch post · 2025-10-16",art2:"How skills work under the hood",art3:"The post that started the skills boom",art4:"The most-shared analysis",
   xT:"𝕏 On X",x1:"Skills announcement & updates",x2:"Official Claude account",x3:"Alex Albert · leads Claude relations",x4:"Jesse Vincent · Superpowers author",x5:"歸藏 · Humanizer-zh & more",x6:"花叔 · Huashu Design author",
-  codename:"Codename · 负屃 — the dragon son who loves the written word, coiled on steles to read every finest text. All the world’s skills, gathered here for AI to read.",
   fLlms:"llms.txt (for AI)",fData:"catalog.json",
   cat_official:"Official",cat_collections:"Collections",cat_dev:"Dev",cat_writing:"Writing",cat_design:"Design",cat_science:"Science",cat_security:"Security",cat_business:"Business",cat_toolbox:"Toolbox",
   all:"All",noResults:"No skills match — try another keyword or category.",featured:"Featured",
@@ -489,7 +492,6 @@ zh:{
   q6:"这个目录怎么维护？",a6:"目录由站长人工精选、手动添加——没有自动抓取。每条链接上架前都会逐一打开核验；同时提供机器可读的 data/catalog.json 与 llms.txt 供 AI 调用。",
   articlesT:"📄 必读文章",art1:"官方发布公告 · 2025-10-16",art2:"技能底层工作原理",art3:"引爆技能浪潮的那篇博文",art4:"传播最广的解读",
   xT:"𝕏 X 上的声音",x1:"技能发布公告与动态",x2:"Claude 官方账号",x3:"Alex Albert · Claude 关系负责人",x4:"Jesse Vincent · Superpowers 作者",x5:"歸藏 · Humanizer-zh 等技能作者",x6:"花叔 · Huashu Design 作者",
-  codename:"本站代号：负屃 — 龙九子中最好文的那只，盘在碑碣之上逐字品读；天下好技能，尽收于此供 AI 一读。",
   fLlms:"llms.txt（供 AI 阅读）",fData:"catalog.json",
   cat_official:"官方出品",cat_collections:"精选合集",cat_dev:"开发工程",cat_writing:"写作内容",cat_design:"设计视觉",cat_science:"科研学术",cat_security:"安全防御",cat_business:"商业增长",cat_toolbox:"工具链",
   all:"全部",noResults:"没有匹配的技能——换个关键词或分类试试。",featured:"精选",
